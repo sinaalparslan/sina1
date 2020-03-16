@@ -1,0 +1,43 @@
+<html lang = "en">
+<Head>
+    <meta http-equiv = "İçerik-Güvenlik-İlkesi" content = "yükseltme-güvensiz talepler">
+    <meta charset = "utf-8" />
+</ Head>
+<Body>
+    <div id = "mapdiv"> </div>
+    <script src = "http://www.openlayers.org/api/OpenLayers.js"> </script>
+    <script src = "http://code.jquery.com/jquery-2.1.1.min.js"> </script>
+    <Script>
+
+        $ .getJSON ('/ api / data', işlev (veri) {
+            console.log (veriler: [0] .longitude);
+            console.log (veriler: [0] .latitude);
+            var veri1 = veri [0]. boylam;
+            var veri2 = veri [0] .atitude;
+
+            map = yeni OpenLayers.Map ("mapdiv");
+            map.addLayer (yeni OpenLayers.Layer.OSM ());
+
+            var noktası;
+            var uzunluk = veri. uzunluk;
+            // YAPILACAKLAR - data haritaya ekleme işlemi
+            for (nokta = 0; nokta <data.length; nokta ++) {
+            var lon = veri [nokta]. boylam;
+            var lat = veri [nokta] .atitude;
+
+            var lonLat = yeni OpenLayers.LonLat (lon, lat) .transform (yeni OpenLayers.Projection ("EPSG: 4326"), // WGS 1984'ten dönüşüm
+                                                                map.getProjectionObject () // için Küresel Mercator Projeksiyonu
+                                                                )
+            var zoom = 15;
+        
+            var markers = yeni OpenLayers.Layer.Markers ("Markers");
+            map.addLayer (markörler)
+                
+            markers.addMarker (yeni OpenLayers.Marker (lonLat))
+                
+            map.setCenter (lonLat, yakınlaştırma)
+            }
+        });
+    </ Script>
+  </ Body>
+  </ Html>
