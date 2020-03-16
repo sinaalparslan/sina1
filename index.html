@@ -1,43 +1,43 @@
-<html lang = "en">
-<Head>
-    <meta http-equiv = "İçerik-Güvenlik-İlkesi" content = "yükseltme-güvensiz talepler">
-    <meta charset = "utf-8" />
-</ Head>
-<Body>
-    <div id = "mapdiv"> </div>
-    <script src = "http://www.openlayers.org/api/OpenLayers.js"> </script>
-    <script src = "http://code.jquery.com/jquery-2.1.1.min.js"> </script>
-    <Script>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <div id="mapdiv"></div>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
 
-        $ .getJSON ('/ api / data', işlev (veri) {
-            console.log (veriler: [0] .longitude);
-            console.log (veriler: [0] .latitude);
-            var veri1 = veri [0]. boylam;
-            var veri2 = veri [0] .atitude;
+        $.getJSON('/api/data', function(data) {
+            console.log(data[0].longitude);
+            console.log(data[0].latitude);
+            var veri1=data[0].longitude;
+            var veri2=data[0].latitude;
 
-            map = yeni OpenLayers.Map ("mapdiv");
-            map.addLayer (yeni OpenLayers.Layer.OSM ());
+            map = new OpenLayers.Map("mapdiv");
+            map.addLayer(new OpenLayers.Layer.OSM());
 
-            var noktası;
-            var uzunluk = veri. uzunluk;
-            // YAPILACAKLAR - data haritaya ekleme işlemi
-            for (nokta = 0; nokta <data.length; nokta ++) {
-            var lon = veri [nokta]. boylam;
-            var lat = veri [nokta] .atitude;
+            var point;
+            var length=data.length;
+            //TODO - data haritaya ekleme işlemi
+            for (point = 0; point < data.length; point++) {
+            var lon=data[point].longitude;
+            var lat=data[point].latitude;
 
-            var lonLat = yeni OpenLayers.LonLat (lon, lat) .transform (yeni OpenLayers.Projection ("EPSG: 4326"), // WGS 1984'ten dönüşüm
-                                                                map.getProjectionObject () // için Küresel Mercator Projeksiyonu
+            var lonLat = new OpenLayers.LonLat(lon,lat ).transform(new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                                                                map.getProjectionObject() // to Spherical Mercator Projection
                                                                 )
-            var zoom = 15;
+            var zoom=15;
         
-            var markers = yeni OpenLayers.Layer.Markers ("Markers");
-            map.addLayer (markörler)
+            var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers)
                 
-            markers.addMarker (yeni OpenLayers.Marker (lonLat))
+            markers.addMarker(new OpenLayers.Marker(lonLat))
                 
-            map.setCenter (lonLat, yakınlaştırma)
+            map.setCenter (lonLat, zoom)
             }
         });
-    </ Script>
-  </ Body>
-  </ Html>
+    </script>
+  </body>
+  </html>

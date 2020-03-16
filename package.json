@@ -1,10 +1,21 @@
 {
-  "name": "package.json",
+  "name": "tutorial",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {"start":"node index.js",
-    "test": "echo\\\"Error:no test specified\\\" && exit 1"
+  "start":"node index.js",
+  "dependencies": {
+    "popup": "^0.0.3",
+    "ol": "^6.2.1",
+    "bluebird": "^3.7.2",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "pg-promise": "^10.4.3"
+  },
+    "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error:no test specified\"&& exit 1\"",
+    "start":"node index.js"
   },
   "author": "",
   "license": "ISC"
